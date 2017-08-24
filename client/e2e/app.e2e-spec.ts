@@ -1,4 +1,6 @@
+const fs = require('fs');
 import { TodoAppPage } from './app.po';
+import { browser } from 'protractor';
 
 describe('todo-app App', () => {
   let page: TodoAppPage;
@@ -7,8 +9,36 @@ describe('todo-app App', () => {
     page = new TodoAppPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should title is Todos', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    browser.takeScreenshot().then(function (png) {
+        writeScreenShot(png, 'screenshot/sign-in-before.png');
+    });
+    expect(page.getTitleText()).toEqual('Todos');
   });
+
+  it('should demo user sign-in', () => {
+    page.setUsername('demo');
+    page.setPassword('demo');
+    page.doSignIn()
+    browser.takeScreenshot().then(function (png) {
+        writeScreenShot(png, 'screenshot/sign-in-after.png');
+    });
+    expect(page.getTitleText()).toEqual('Todos List');
+  });
+
+  it('should add Todos', () => {
+    page.addTodo('Todo 1');
+    browser.takeScreenshot().then(function (png) {
+        writeScreenShot(png, 'screenshot/sign-in-before.png');
+    });
+    expect(page.getTitleText()).toEqual('Todos List');
+  });
+
 });
+
+function writeScreenShot(data, filename) {
+    var stream = fs.createWriteStream(filename);
+    stream.write(new Buffer(data, 'base64'));
+    stream.end();
+}

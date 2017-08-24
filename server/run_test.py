@@ -11,7 +11,7 @@ if __name__ == "__main__":
         formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument(
         'type',
-        help='The test type[ut|e2e].')
+        help='The test type[ut|fn].')
 
     args = parser.parse_args()
 
@@ -19,6 +19,6 @@ if __name__ == "__main__":
         ut = unittest.TestLoader().loadTestsFromTestCase(TodoTestCase)
         unittest.TextTestRunner(verbosity=2).run(ut)
 
-    if args.type == 'e2e':
-        e2e  = unittest.TestLoader().loadTestsFromTestCase(TodoResourceTestCase)
-        unittest.TextTestRunner(verbosity=2).run(e2e)
+    if args.type == 'fn':
+        fn = unittest.TestLoader().loadTestsFromTestCase(TodoResourceTestCase)
+        unittest.TextTestRunner(verbosity=2).run(fn)

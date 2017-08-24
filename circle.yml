@@ -1,0 +1,16 @@
+machine:
+  python:
+    version: 2.7.12
+
+dependencies:
+  pre:
+    - cd ./server&&pip install -r requirements-dev.txt
+
+database:
+  post:
+    - cd ./server&&python migration.py upgrade
+
+test:
+  override:
+    - cd ./server&&coverage run test_runner.py ut
+    - cd ./server&&coverage html --include=test/models_ut.py

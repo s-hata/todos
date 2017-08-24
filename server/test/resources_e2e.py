@@ -2,6 +2,7 @@ import unittest
 import json
 
 from app import ( app, db )
+from app.models import Todo
 
 http_headers={
     'Content-Type': 'application/json',
@@ -15,7 +16,9 @@ class TodoResourceTestCase(unittest.TestCase):
         self.session = db.session
 
     def tearDown(self):
-        self.session.rollback()
+        self.session.query(Todo).delete()
+        self.session.commit()
+        reset()
 
     def test_create_success(self):
         body = {
@@ -37,14 +40,34 @@ class TodoResourceTestCase(unittest.TestCase):
         #self.assertIsNotNone(catalog['created_at'])
 
     def test_update_success(self):
+
+        todo = Todo(title='test', complete=False)
+        self.session.add(todo)
+        self.session.commit()
+
         body = {
             'title': u'test',
             'complete': True,
         }
 
         json_body = json.dumps(body)
-        response = self.client.put('todos',
+        response = self.client.put('todos/1',
                                     data=json_body,
                                     headers=http_headers
                                     )
         self.assertEquals(200, response.status_code)
+
+    def test_delete_success(self):
+
+        todo = Todo(title='test', complete=False)
+        self.session.add(todo)
+        self.session.commit()
+
+        response = self.client.delete('todos/1',
+                                    headers=http_headers
+                                    )
+        self.assertEquals(200, response.status_code)
+
+
+def reset():
+    db.engine.execute('alter table todo auto_increment=1')

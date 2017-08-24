@@ -29,4 +29,10 @@ describe('TodoListHeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should title is Todos', () => {
+    let title = fixture.debugElement.query(By.css('h1'));
+    let titleElement = title.nativeElement;
+    expect(titleElement.textContent).toBe('Todos');
+  });
 });

@@ -13,6 +13,6 @@ class Default(object):
 class Development(Default):
     LOG_LEVEL = logging.DEBUG
     SQLALCHEMY_DATABASE_URI = \
-        'mysql://todos:todos@192.168.99.101:3306/todos'
+        'mysql://todos:todos@192.168.99.100:3306/todos'
     SQLALCHEMY_ECHO = False
     SQLALCHEMY_TRACK_MODIFICATIONS = True
