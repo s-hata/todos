@@ -30,7 +30,7 @@ describe('todo-app App', () => {
   it('should add Todos', () => {
     page.addTodo('Todo 1');
     browser.takeScreenshot().then(function (png) {
-        writeScreenShot(png, 'screenshot/sign-in-before.png');
+        writeScreenShot(png, 'screenshot/add-todo.png');
     });
     expect(page.getTitleText()).toEqual('Todos List');
   });

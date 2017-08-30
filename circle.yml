@@ -1,16 +1,18 @@
-machine:
-  python:
-    version: 2.7.12
-
-dependencies:
-  pre:
-    - cd ./server&&pip install -r requirements-dev.txt
-
-database:
-  post:
-    - cd ./server&&python migration.py upgrade
-
-test:
-  override:
-    - cd ./server&&coverage run test_runner.py ut
-    - cd ./server&&coverage html --include=test/models_ut.py
+jobs:
+  build:
+    docker:
+      - image: ruby:2.3.1
+        environment:
+          - PG_HOST=localhost
+          - PG_USER=ubuntu
+          - ENV: "CI"
+      - image: postgres:9.5
+        environment:
+          - POSTGRES_USER=ubuntu
+          - POSTGRES_DB=db_name
+    branches:
+      only:
+        - master
+    steps:
+      - run: make test
+      - run: make
