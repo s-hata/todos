@@ -22,8 +22,6 @@ jobs:
             npm install
 
       - run:
-          name: install dependencies for server
+          name: run unit test
           command: |
-            virtualenv --no-site-packages .
-            source bin/activate
-            pip install -r server/requirements.txt
+            ng test
