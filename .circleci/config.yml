@@ -18,9 +18,9 @@ jobs:
       - run:
           name: install dependencies for client
           command: |
-            npm install -g @angular/cli
             cd client
             npm install
+            npm link @angular/cli
 
       - run:
           name: run unit test
