@@ -4,10 +4,10 @@ version: 2
 jobs:
   build:
     docker:
+      - image: circleci/node:8.5-browsers
       - image: circleci/python:2.7.13
         environment:
           ENV: UnitTest
-      - image: circleci/node:8.5-browsers
       - image: circleci/mysql:5.7
 
     working_directory: ~/repo
