@@ -16,7 +16,13 @@ jobs:
       - checkout
 
       - run:
-          name: install dependencies
+          name: install dependencies for client
+          command: |
+            cd client
+            npm install
+
+      - run:
+          name: install dependencies for server
           command: |
             virtualenv --no-site-packages .
             source bin/activate
