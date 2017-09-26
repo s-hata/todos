@@ -18,7 +18,7 @@ describe('TodoDataService', () => {
     });
   });
 
-  it('should ...', inject([TodoDataService], (service: TodoDataService) => {
+  it('サービスのインスタンスをインジェクションできる', inject([TodoDataService], (service: TodoDataService) => {
     expect(service).toBeTruthy();
   }));
 

@@ -29,4 +29,15 @@ export class TodoAppPage {
     newTodoInput.sendKeys(title);
     newTodoInput.sendKeys(protractor.Key.ENTER);
   }
+
+  done(label) {
+    let todo1 = element(by.cssContainingText("label", label));
+    todo1.click();
+  }
+
+  delete() {
+    var todos = element.all(by.css('.destroy'));
+    todos.last().click();
+  }
+
 }

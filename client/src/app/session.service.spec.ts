@@ -9,7 +9,7 @@ describe('SessionService', () => {
     });
   });
 
-  it('should ...', inject([SessionService], (service: SessionService) => {
+  it('サービスのインスタンスをインジェクションできる', inject([SessionService], (service: SessionService) => {
     expect(service).toBeTruthy();
   }));
 });

@@ -13,7 +13,7 @@ describe('AuthService', () => {
     });
   });
 
-  it('should ...', inject([AuthService], (service: AuthService) => {
+  it('サービスのインスタンスをインジェクションできる', inject([AuthService], (service: AuthService) => {
     expect(service).toBeTruthy();
   }));
 });

@@ -26,7 +26,7 @@ describe('TodoListFooterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('コンポーネントのインスタンスを生成できる', () => {
     expect(component).toBeTruthy();
   });
 });

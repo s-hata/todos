@@ -24,7 +24,7 @@ describe('TodoListItemComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('コンポーネントのインスタンスを生成できる', () => {
     expect(component).toBeTruthy();
   });
 });

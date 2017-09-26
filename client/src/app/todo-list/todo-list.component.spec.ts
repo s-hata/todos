@@ -29,7 +29,11 @@ describe('TodoListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('コンポーネントのインスタンスを生成できる', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('１件のタスクリストを保持する', () => {
+    expect(component.todos.length).toBe(1);
   });
 });

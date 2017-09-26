@@ -1,11 +1,11 @@
 import {Todo} from './todo';
 
 describe('Todo', () => {
-  it('should create an instance', () => {
+  it('モデルのインスタンスを生成できる', () => {
     expect(new Todo()).toBeTruthy();
   });
 
-  it('should accept values in the constructor', () => {
+  it('コンストラクタでインスタンスを初期化できる', () => {
     const todo = new Todo({
       title: 'hello',
       complete: true

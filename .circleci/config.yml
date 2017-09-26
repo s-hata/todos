@@ -1,28 +1,41 @@
-# CircleCI 2.0 configuration file
-#
 version: 2
 jobs:
   build:
+    working_directory: ~/todos
     docker:
       - image: circleci/node:8.5-browsers
-      - image: circleci/python:2.7.13
-        environment:
-          ENV: UnitTest
-      - image: circleci/mysql:5.7
-
-    working_directory: ~/repo
-
     steps:
       - checkout
-
+      - restore_cache:
+          key: dependency-cache-{{ checksum "client/yarn.lock" }}
       - run:
-          name: install dependencies for client
+          name: install-dependencies
           command: |
             cd client
-            npm install
-            npm link @angular/cli
-
+            yarn install
+      - save_cache:
+          key: dependency-cache-{{ checksum "client/yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+            - ./client/node_modules
       - run:
-          name: run unit test
+          name: angular-build
           command: |
-            ng test
+            cd client
+            yarn ng -- build --prod --aot --no-progress
+      - run:
+          name: angular-test
+          command: |
+            cd client
+            yarn test -- --single-run --no-progress
+      - store_artifacts:
+          path: client/test-results.xml
+          prefix: tests
+      - run:
+          name: angular-lint
+          command: |
+            cd client
+            yarn lint -- --formatters-dir ./tslint-formatters --format junit -o tslint.xml
+      - store_artifacts:
+          path: client/tslint.xml
+          prefix: lint

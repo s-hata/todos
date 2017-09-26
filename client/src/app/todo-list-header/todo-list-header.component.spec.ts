@@ -26,13 +26,13 @@ describe('TodoListHeaderComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('コンポーネントのインスタンスを生成できる', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should title is Todos', () => {
+  it('ヘッダーに表示されるタイトルがTodos Listである', () => {
     let title = fixture.debugElement.query(By.css('h1'));
     let titleElement = title.nativeElement;
-    expect(titleElement.textContent).toBe('Todos');
+    expect(titleElement.textContent).toBe('Todos List');
   });
 });
