@@ -22,7 +22,7 @@ jobs:
           name: angular-build
           command: |
             cd client
-            yarn ng -- build --prod --aot --no-progress
+            yarn ng -- build --env=prod --aot --no-progress
       - run:
           name: angular-test
           command: |
