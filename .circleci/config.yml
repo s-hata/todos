@@ -27,9 +27,10 @@ jobs:
           name: angular-test
           command: |
             cd client
-            yarn test -- --single-run --no-progress
+            yarn test -- --single-run --no-progress --code-coverage --reporters=junit,coverage-istanbul
       - store_artifacts:
-          path: client/test-results.xml
+          path: client/coverage
+          path: client/TESTS-*
           prefix: tests
       - run:
           name: angular-lint
