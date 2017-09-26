@@ -30,7 +30,7 @@ jobs:
             yarn test -- --single-run --no-progress --code-coverage --reporters=junit,coverage-istanbul
       - store_artifacts:
           path: client/coverage
-          path: client/reports/unit/*
+          path: client/reports/unit
           prefix: tests
       - run:
           name: angular-lint
