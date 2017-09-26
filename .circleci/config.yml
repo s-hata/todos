@@ -36,7 +36,7 @@ jobs:
           name: angular-lint
           command: |
             cd client
-            yarn lint -- --formatters-dir ./tslint-formatters --format junit -o tslint.xml
+            yarn lint -- --format checkstyle > tslint.xml
       - store_artifacts:
           path: client/tslint.xml
           prefix: lint
